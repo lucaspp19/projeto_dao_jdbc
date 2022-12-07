@@ -86,7 +86,7 @@ public class sellerDaoJDBC implements sellerDao {
 		
 		seller obj = new seller();
 		obj.setId(rs.getInt("Id"));
-		obj.setName("Name");
+		obj.setName(rs.getString("Name"));
 		obj.setEmail(rs.getString("Email"));
 		obj.setBaseSalary(rs.getDouble("BaseSalary"));
 		obj.setDate(rs.getDate("BirthDate"));
@@ -104,9 +104,59 @@ public class sellerDaoJDBC implements sellerDao {
 
 	@Override
 	public List<seller> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try 
+		{
+		st = conn.prepareStatement(
+				
+				"SELECT seller.*,department.Name as DepName "
+				+ "FROM seller INNER JOIN department "
+				+ "ON seller.DepartmentId = department.Id "  
+				+ "ORDER BY Name");
+		
+		
+		
+		rs = st.executeQuery();
+		
+		List<seller> list = new ArrayList();
+		Map<Integer, departments> map = new HashMap();
+		
+		while(rs.next()) {
+			
+			departments dep = map.get(rs.getInt("DepartmentId"));
+			
+			if(dep == null) {
+				 
+				 dep = instantiateDepartment(rs);
+				 map.put(rs.getInt("DepartmentId"), dep);
+			}
+			
+			
+			seller obj = instantiateSeller(dep, rs);
+			
+			list.add(obj);
+			
+			
+		}
+		
+		return list;
+		
 	}
+	catch(SQLException e) {
+		
+		throw new DbException(e.getMessage());
+	}
+		
+		finally {
+			
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+		
+	}
+	
 
 	@Override
 	public List<seller> findByDepartment(departments dept) {
