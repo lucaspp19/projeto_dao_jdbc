@@ -100,7 +100,7 @@ public class seller implements Serializable {
 	@Override
 	public String toString() {
 		return "seller: \n" + "id = " + id + "\n" + "name = " + name + "\n" + "email = " + email + "\n" + "date = "
-				+ date.format(fmt) + "\n" + "baseSalary = " + baseSalary + "\n\n" + dept;
+				+ date.format(fmt) + "\n" + "baseSalary = " + String.format("%.2f", baseSalary) + "\n\n" + dept;
 	}
 
 }
