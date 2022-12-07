@@ -1,8 +1,7 @@
 package application;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.daoFactory;
 import model.dao.sellerDao;
@@ -13,7 +12,7 @@ public class program {
 
 	public static void main(String[] args) {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Scanner sc = new Scanner(System.in);
 		
 
 		sellerDao seller = daoFactory.createSellerDao();
@@ -56,11 +55,18 @@ public class program {
 		
 		System.out.println("\n=== Teste:5 seller update ===");
 		
-		sl = seller.findById(10);
+		sl = seller.findById(9);
 		sl.setName("joao silva");
 		seller.updade(sl);
 		System.out.println("update completo!");
 		
+		System.out.println("\n=== Teste:6 seller delete ===");
+		
+		System.out.print("Entre com Id que sera deletado: ");
+		int id = sc.nextInt();
+		seller.deleteById(id);
+		
+		System.out.println("delete completado!");
 		
 	}
 
