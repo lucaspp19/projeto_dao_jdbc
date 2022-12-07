@@ -44,12 +44,22 @@ public class program {
 			System.out.println(obj);
 		}
 		
+		/*
 		System.out.println("\n=== Teste:4 seller insert ===");
 		seller newSeller = new seller (null, "Max", "Max@hotmail.com", new Date(), 7000.0, dep);
 
 		seller.insert(newSeller);
 		
 		System.out.println("Novo Id inserido: " + newSeller.getId());
+		
+		*/
+		
+		System.out.println("\n=== Teste:5 seller update ===");
+		
+		sl = seller.findById(10);
+		sl.setName("joao silva");
+		seller.updade(sl);
+		System.out.println("update completo!");
 		
 		
 	}
