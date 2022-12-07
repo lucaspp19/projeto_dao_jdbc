@@ -1,8 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 import java.util.Objects;
 
 public class seller implements Serializable {
@@ -12,7 +11,7 @@ public class seller implements Serializable {
 	private Integer id;
 	private String name;
 	private String email;
-	private LocalDateTime date;
+	private Date date;
 	private Double baseSalary;
 
 	private departments dept;
@@ -20,7 +19,7 @@ public class seller implements Serializable {
 	public seller() {
 	}
 
-	public seller(Integer id, String name, String email, LocalDateTime date, Double baseSalary, departments dept) {
+	public seller(Integer id, String name, String email, Date date, Double baseSalary, departments dept) {
 
 		this.id = id;
 		this.name = name;
@@ -54,11 +53,11 @@ public class seller implements Serializable {
 		this.email = email;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -95,12 +94,12 @@ public class seller implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	
 
 	@Override
 	public String toString() {
 		return "seller: \n" + "id = " + id + "\n" + "name = " + name + "\n" + "email = " + email + "\n" + "date = "
-				+ date.format(fmt) + "\n" + "baseSalary = " + String.format("%.2f", baseSalary) + "\n\n" + dept;
+				+ date + "\n" + "baseSalary = " + String.format("%.2f", baseSalary) + "\n\n" + dept;
 	}
 
 }

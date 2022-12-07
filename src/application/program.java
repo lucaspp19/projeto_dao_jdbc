@@ -1,23 +1,25 @@
 package application;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import model.entities.departments;
+
+import model.dao.daoFactory;
+import model.dao.sellerDao;
 import model.entities.seller;
 
 public class program {
 
 	public static void main(String[] args) {
 		
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
+		sellerDao seller =  daoFactory.createSellerDao();
 		
-		departments dp = new departments(1, "Books");
-		seller sl = new seller(1, "book", "lucas@gmail.com",LocalDateTime.parse("1988-08-27 01:00:30", fmt), 2000.0, dp);
+		seller sl = seller.findById(3);
 		
 		
 		System.out.println(sl);
+		
+		
+		
 
 	}
 

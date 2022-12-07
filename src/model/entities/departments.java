@@ -10,6 +10,8 @@ public class departments implements Serializable {
 	private Integer id;
 	private String name;
 	
+	public departments() {}
+	
 	public departments(Integer id, String name) {
 		
 		this.id = id;
